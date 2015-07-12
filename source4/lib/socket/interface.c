@@ -357,6 +357,21 @@ const char *iface_list_n_ip(struct interface *ifaces, int n)
 	return NULL;
 }
 
+/**
+  return name of the Nth interface
+  **/
+const char *iface_list_n_name(struct interface *ifaces, int n)
+{
+	struct interface *i;
+  
+	for (i=ifaces;i && n;i=i->next)
+		n--;
+
+	if (i) {
+		return (const char *)i->name;
+	}
+	return NULL;
+}
 
 /**
   return the first IPv4 interface address we have registered
@@ -376,7 +391,7 @@ const char *iface_list_first_v4(struct interface *ifaces)
 /**
   return the first IPv6 interface address we have registered
   **/
-static const char *iface_list_first_v6(struct interface *ifaces)
+const char *iface_list_first_v6(struct interface *ifaces)
 {
 	struct interface *i;
 

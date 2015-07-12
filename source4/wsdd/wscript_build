@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+bld.SAMBA_MODULE('service_wsdd',
+	source='wsdd.c wsd.c llmnr.c xmlns.c yxml.c',
+	subsystem='service',
+	init_function='server_service_wsdd_init',
+	deps='process_model samba-hostconfig ndr LIBTSOCKET LIBSAMBA_TSOCKET',
+	internal_module=False,
+	local_include=True,
+	enabled=bld.AD_DC_BUILD_IS_ENABLED()
+	)
